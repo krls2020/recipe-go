@@ -81,16 +81,17 @@ func addEntry(w http.ResponseWriter, r *http.Request) {
     slog.Error("slog.Error - entry added", "data", randomData, "total", count)
 
 
+    response := map[string]interface{}{
+        "message": `This is a simple, basic GO application running on Zerops.io, each request adds an entry to the PostgreSQL database and returns a count.
+                    See the source repository (https://github.com/zeropsio/recipe-go) for more information.`,
+        "newEntry": randomData,
+        "count":    count,
+    }
 
-	response := fmt.Sprintf(`
-This is a simple, basic GO application running on <a href="https://zerops.io/">Zerops.io</a>.
-Each request adds an entry to the PostgreSQL database and returns a count.
+    w.Header().Set("Content-Type", "application/json")
+    w.WriteHeader(http.StatusCreated)
+    json.NewEncoder(w).Encode(response)
 
-See the source repository (<a href="https://github.com/zeropsio/recipe-go">https://github.com/zeropsio/recipe-go</a>) for more information.
-
-Entry added successfully with random data: %s. Total count: %d`, randomData, count)
-
-   	fmt.Fprint(w, response)
 }
 
 func statusCheck(w http.ResponseWriter, r *http.Request) {
