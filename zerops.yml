@@ -4,13 +4,13 @@ zerops:
       base: go@1
       buildCommands:
         - |
-          cd golang
-          go build -o golang ./...
+          cd src
+          go build -o app ./...
       deploy:
-        - ./golang/~/golang
+        - ./src/~/app
     run:
       base: go@1
-      start: ./golang
+      start: ./app
       ports:
         - port: 8080
           httpSupport: true
