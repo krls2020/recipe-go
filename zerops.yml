@@ -3,7 +3,7 @@ zerops:
     build:
       base: go@1
       buildCommands:
-        go build -o app .
+        - go build -o app .
       deploy: ./app
     run:
       base: go@1
