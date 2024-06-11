@@ -1,0 +1,16 @@
+zerops:
+  - setup: golang1
+    build:
+      base: go@1
+      buildCommands:
+        - |
+          cd golang
+          go build -o golang ./...
+      deploy:
+        - ./golang/~/golang
+    run:
+      start: ./golang
+      healthCheck:
+        httpGet:
+          port: 8080
+          path: /status
