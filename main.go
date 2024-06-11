@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	import "log/slog"
 
 	"github.com/google/uuid"
 	"github.com/joho/godotenv"
@@ -72,6 +73,15 @@ func addEntry(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+    // LOG
+	log.Printf("log - entry added: %s.\n", randomData)
+
+    slog.Info("slog.Info - entry added", "data", randomData, "total", count)
+    slog.Warn("slog.Warn - entry added", "data", randomData, "total", count)
+    slog.Error("slog.Error - entry added", "data", randomData, "total", count)
+
+
+
 	response := fmt.Sprintf(`
 This is a simple, basic GO application running on <a href="https://zerops.io/">Zerops.io</a>.
 Each request adds an entry to the PostgreSQL database and returns a count.
@@ -80,7 +90,7 @@ See the source repository (<a href="https://github.com/zeropsio/recipe-go">https
 
 Entry added successfully with random data: %s. Total count: %d`, randomData, count)
 
-    	fmt.Fprint(w, response)
+   	fmt.Fprint(w, response)
 }
 
 func statusCheck(w http.ResponseWriter, r *http.Request) {
