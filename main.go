@@ -82,8 +82,7 @@ func addEntry(w http.ResponseWriter, r *http.Request) {
 
 
     response := map[string]interface{}{
-        "message": `This is a simple, basic GO application running on Zerops.io, each request adds an entry to the PostgreSQL database and returns a count.
-                    See the source repository (https://github.com/zeropsio/recipe-go) for more information.`,
+        "message": `This is a simple, basic GO application running on Zerops.io, each request adds an entry to the PostgreSQL database and returns a count. See the source repository (https://github.com/zeropsio/recipe-go) for more information.`,
         "newEntry": randomData,
         "count":    count,
     }
