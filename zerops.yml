@@ -2,12 +2,8 @@ zerops:
   - setup: api
     build:
       base: go@1
-      buildCommands:
-        - |
-          cd src
-          go build -o app ./...
-      deploy:
-        - ./src/~/app
+      buildCommands: go build -o app .
+      deploy: ./app
     run:
       base: go@1
       start: ./app
