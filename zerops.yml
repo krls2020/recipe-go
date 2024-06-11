@@ -2,7 +2,8 @@ zerops:
   - setup: api
     build:
       base: go@1
-      buildCommands: go build -o app .
+      buildCommands:
+        go build -o app .
       deploy: ./app
     run:
       base: go@1
