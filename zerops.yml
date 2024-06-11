@@ -1,5 +1,5 @@
 zerops:
-  - setup: golang1
+  - setup: api
     build:
       base: go@1
       buildCommands:
@@ -9,7 +9,17 @@ zerops:
       deploy:
         - ./golang/~/golang
     run:
+      base: go@1
       start: ./golang
+      ports:
+        - port: 8080
+          httpSupport: true
+      envVariables:
+        DB_NAME: db
+        DB_HOST: db
+        DB_PORT: 5432
+        DB_USER: db
+        DB_PASS: ${db_password}
       healthCheck:
         httpGet:
           port: 8080

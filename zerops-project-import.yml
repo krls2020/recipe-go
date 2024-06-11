@@ -5,7 +5,7 @@ project:
 
 services:
   - hostname: api
-    type: go@1
+    type: go@1.22
     enableSubdomainAccess: true
     buildFromGit: https://github.com/krls2020/recipe-go
 
