@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -73,5 +74,8 @@ func addEntry(w http.ResponseWriter, r *http.Request) {
 }
 
 func statusCheck(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "UP")
+	w.Header().Set("Content-Type", "application/json")
+	status := map[string]string{"status": "UP"}
+	json.NewEncoder(w).Encode(status)
 }
+
